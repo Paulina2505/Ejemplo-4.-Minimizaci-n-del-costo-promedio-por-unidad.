@@ -16,8 +16,8 @@ public class Principal {
     private static double[] fitness;
     private static double probabilidadCruza = 0.7;
     private static double probabilidadMutacion = 0.3;
-    private static int individuos = 10;
-    private static int genes = 4;
+    private static int individuos = 100;
+    private static int genes = 10;
     
     public static void main(String[] args) {
         generarPoblacionInicial();
@@ -31,7 +31,9 @@ public class Principal {
             for (int j = 0; j < individuos; j++) decimales[j] = binarioToDecimal(binarios[j]);
             for (int j = 0; j < fitness.length; j++){ fitness[j] = fitness(decimales[j]); /*System.out.println(fitness[j]);*/}
         }
-        System.out.println("RESULTADO: "+fitness(decimales[papaMenor()]));
+        System.out.println("RESULTADO");
+        System.out.println("COSTO PROMEDIO: "+fitness(decimales[papaMenor()]));
+        System.out.println("NÚMERO DE UNIDADES PRODUCIDAS: "+decimales[papaMenor()]);
     }
     
     public static void generarPoblacionInicial() {
@@ -70,7 +72,7 @@ public class Principal {
         return resultado;
     }
     
-    public static double fitness(int x) {return (5*x*x)-(20*x)+3;}
+    public static double fitness(int x) {if (x > 0) return (100000/x)+(1500)+(0.2*x); else return (100000)+(1500)+(0.2*x);}
     
     public static int papaMayor() {
         double mayor = fitness[0];
